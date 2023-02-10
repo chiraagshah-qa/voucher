@@ -1,5 +1,5 @@
 beforeEach(() => {
-    cy.visit('https://www.vouchercodes.co.uk')
+    cy.visit(Cypress.config('baseUrl'))
     cy.checkHomePageLoads()
 })
 
@@ -21,7 +21,7 @@ describe('Get Local Restaurant Offers.', function() {
         cy.get('button').contains('Find restaurants vouchers').should('not.be.disabled')
         .click()
         //The verifications are based on searching at the time.
-        cy.url().should('be.equal', 'https://www.vouchercodes.co.uk/restaurant-vouchers/search?lat=51.5072178&lng=-0.1275862&rl=London,%20UK')
+        cy.url().should('be.equal', Cypress.config('baseUrl') + 'restaurant-vouchers/search?lat=51.5072178&lng=-0.1275862&rl=London,%20UK')
         cy.get('[data-qa="el:infoBannerTitle"]').should('have.text', "Sorry, we couldn't find any offers that match your criteria")
     })
 
